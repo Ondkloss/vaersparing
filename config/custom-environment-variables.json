@@ -1,0 +1,7 @@
+{
+    "credentials": {
+        "userId": "SBANKEN_USERID",
+        "clientId": "SBANKEN_CLIENTID",
+        "clientSecret": "SBANKEN_CLIENTSECRET"
+    }
+}

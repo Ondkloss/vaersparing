@@ -1,0 +1,13 @@
+{
+    "credentials": {
+        "userId": 12345678901,
+        "clientId": "ClientID",
+        "clientSecret": "ClientSecret"
+    },
+    "config": {
+        "fromAccountId": "FromAccountID",
+        "toAccountId": "ToAccountID",
+        "kronerPrMillimeter": 10,
+        "yrLocation": "https://www.yr.no/sted/Norge/Hordaland/Bergen/Bergen/"
+    }
+}
