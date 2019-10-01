@@ -1,7 +1,7 @@
 export interface AccessToken {
-    access_token: string;
-    expires_in: number;
-    token_type: string;
+  access_token: string;
+  expires_in: number;
+  token_type: string;
 }
 
 export interface Accounts {
@@ -30,7 +30,24 @@ export interface Yr {
 }
 
 export interface YrWeatherdata {
+  location: YrLocation;
   forecast: YrForecast;
+}
+
+export interface YrLocation {
+  name: string;
+  country: string;
+  location: YrGeoLocation;
+}
+
+export interface YrGeoLocation {
+  $: YrGeoLocationAttributes;
+}
+
+export interface YrGeoLocationAttributes {
+  altitude: string;
+  latitude: string;
+  longitude: string;
 }
 
 export interface YrForecast {

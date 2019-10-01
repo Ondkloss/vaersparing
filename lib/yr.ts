@@ -1,19 +1,21 @@
-import request from 'superagent';
+import { request, proxy } from './request';
 import { Parser } from 'xml2js';
 import { Yr } from './models';
 
 export const getForecast = (placeUrl: string): Promise<Yr> => {
     var promise = new Promise<Yr>(function (resolve, reject) {
-        request.get(`${placeUrl}/varsel.xml`).end(function (err, res) {
-            if (err || !res.ok) {
-                reject();
-            } else {
-                const parser = new Parser({ explicitArray: false });
-                parser.parseStringPromise(res.text).then((response) => {
-                    resolve(response);
-                });
-            }
-        });
+        request.get(`${placeUrl}/varsel.xml`)
+            .proxy(proxy)
+            .end(function (err: any, res: any) {
+                if (err || !res.ok) {
+                    reject(err);
+                } else {
+                    const parser = new Parser({ explicitArray: false });
+                    parser.parseStringPromise(res.text).then((response) => {
+                        resolve(response);
+                    });
+                }
+            });
     });
 
     return promise;

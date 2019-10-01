@@ -1,4 +1,4 @@
-import request from 'superagent';
+import { request, proxy } from './request';
 import btoa from 'btoa';
 import { AccessToken, Accounts } from './models';
 
@@ -9,13 +9,14 @@ export const getAccessToken = (userId: number, clientId: string, clientSecret: s
   var promise = new Promise<AccessToken>(function (resolve, reject) {
     request
       .post(identityServerUrl)
+      .proxy(proxy)
       .send('grant_type=client_credentials')
       .set('Authorization', "Basic " + basicAuth)
       .set('Accept', 'application/json')
       .set('customerId', '' + userId)
-      .end(function (err, res) {
+      .end(function (err: any, res: any) {
         if (err || !res.ok) {
-          reject();
+          reject(err);
         } else {
           resolve(res.body);
         }
@@ -31,6 +32,7 @@ export const performTransaction = (userId: number, accessToken: string, fromAcco
   var promise = new Promise<boolean>(function (resolve, reject) {
     request
       .post(identityServerUrl)
+      .proxy(proxy)
       .set('Authorization', "Bearer " + accessToken)
       .set('customerId', '' + userId)
       .send({
@@ -39,9 +41,9 @@ export const performTransaction = (userId: number, accessToken: string, fromAcco
         message,
         amount,
       })
-      .end(function (err, res) {
+      .end(function (err: any, res: any) {
         if (err || !res.ok) {
-          reject();
+          reject(err);
         } else {
           resolve(true);
         }
@@ -57,12 +59,14 @@ export const getAccountDetails = (userId: number, accessToken: string): Promise<
   var promise = new Promise<Accounts>(function (resolve, reject) {
     request
       .get(accountServiceUrl)
+      .proxy(proxy)
       .set('Authorization', "Bearer " + accessToken)
       .set('Accept', 'application/json')
       .set('customerId', '' + userId)
-      .end(function (err, res) {
+      .end(function (err: any, res: any) {
         if (err || !res.ok) {
-          reject();
+          console.log(err, res);
+          reject(err);
         } else {
           resolve(res.body);
         }
