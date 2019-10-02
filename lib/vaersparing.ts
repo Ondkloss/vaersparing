@@ -1,6 +1,5 @@
 import { getAccessToken, getAccountDetails, performTransaction } from './sbanken';
 import { getForecast, getTodaysPrecipitation } from './yr';
-import { SbankenAccounts } from './models';
 import config from 'config';
 
 
@@ -28,7 +27,7 @@ export const performApp = () => {
 export const performAccounts = () => {
     // Gets and prints your account details
     getAccessToken(config.get('credentials.userId'), config.get('credentials.clientId'), config.get('credentials.clientSecret')).then((response) => {
-        getAccountDetails(config.get('credentials.userId'), response.access_token).then((response: SbankenAccounts) => {
+        getAccountDetails(config.get('credentials.userId'), response.access_token).then((response) => {
             for (const account of response.items) {
                 const { accountId, accountNumber, name, balance } = account;
                 console.log(`<Konto (ID: ${accountId}) (nummer: ${accountNumber}) (navn: ${name}) (saldo: ${balance})>`);
