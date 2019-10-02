@@ -19,9 +19,9 @@ Det må settes opp `config/default.json` for å kunne kjøre programmet. Her er 
 - `credentials.clientSecret` (tekst): Passord bestilt i Sbanken utviklerportal
   - Denne kan alternativt settes i en `SBANKEN_CLIENTSECRET` miljøvariabel
 - `config.fromAccountId` (tekst): IDen til en konto du vil overføre penger fra
-  - Denne IDen kan skaffes ved å kjøre `accounts.ts`
+  - Denne IDen kan skaffes ved å kjøre `node dist/app.js --accounts`
 - `config.toAccountId` (tekst): IDen til en konto du vil overføre penger til
-  - Denne IDen kan skaffes ved å kjøre `accounts.ts`
+  - Denne IDen kan skaffes ved å kjøre `node dist/app.js --accounts`
 - `config.kronerPrMillimeter` (tall): Antall kroner du vil spare pr millimeter nedbør
 - `config.yrLocation` (tekst): Link til ditt sted på Yr
   - Bla deg frem til ditt sted på Yr og kopier linken
