@@ -1,12 +1,12 @@
 import { request, proxy } from './request';
 import btoa from 'btoa';
-import { AccessToken, Accounts } from './models';
+import { SbankenAccessToken, SbankenAccounts } from './models';
 
-export const getAccessToken = (userId: number, clientId: string, clientSecret: string): Promise<AccessToken> => {
+export const getAccessToken = (userId: number, clientId: string, clientSecret: string): Promise<SbankenAccessToken> => {
   var identityServerUrl = "https://auth.sbanken.no/identityserver/connect/token";
   var basicAuth = btoa(encodeURIComponent(clientId) + ":" + encodeURIComponent(clientSecret));
 
-  var promise = new Promise<AccessToken>(function (resolve, reject) {
+  var promise = new Promise<SbankenAccessToken>(function (resolve, reject) {
     request
       .post(identityServerUrl)
       .proxy(proxy)
@@ -53,10 +53,10 @@ export const performTransaction = (userId: number, accessToken: string, fromAcco
   return promise;
 }
 
-export const getAccountDetails = (userId: number, accessToken: string): Promise<Accounts> => {
+export const getAccountDetails = (userId: number, accessToken: string): Promise<SbankenAccounts> => {
   var accountServiceUrl = "https://api.sbanken.no/exec.bank/api/v1/accounts/";
 
-  var promise = new Promise<Accounts>(function (resolve, reject) {
+  var promise = new Promise<SbankenAccounts>(function (resolve, reject) {
     request
       .get(accountServiceUrl)
       .proxy(proxy)

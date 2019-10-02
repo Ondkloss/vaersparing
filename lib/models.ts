@@ -1,12 +1,12 @@
-export interface AccessToken {
+export interface SbankenAccessToken {
   access_token: string;
   expires_in: number;
   token_type: string;
 }
 
-export interface Accounts {
+export interface SbankenAccounts {
   availableItems: number;
-  items: Account[];
+  items: SbankenAccount[];
   errorType: string;
   isError: boolean;
   errorCode: number;
@@ -14,7 +14,7 @@ export interface Accounts {
   traceId: string;
 }
 
-export interface Account {
+export interface SbankenAccount {
   accountId: string;
   accountNumber: string;
   ownerCustomerId: string;
@@ -60,6 +60,7 @@ export interface YrTabular {
 
 export interface YrTime {
   $: YrTimeAttributes,
+  symbol: YrSymbol;
   precipitation: YrPrecipitation;
 }
 
@@ -67,6 +68,17 @@ export interface YrTimeAttributes {
   from: string;
   to: string;
   period: string;
+}
+
+export interface YrSymbol {
+  $: YrSymbolAttributes;
+}
+
+export interface YrSymbolAttributes {
+  number: string;
+  numberEx: string;
+  name: string;
+  var: string;
 }
 
 export interface YrPrecipitation {
