@@ -17,7 +17,7 @@ export const getTodaysPrecipitation = async (placeUrl: string): Promise<number> 
     for (const time of yr.weatherdata.forecast.tabular.time) {
         if (new Date(Date.parse(time.$.from)).toDateString() == new Date().toDateString()) {
             const { value } = time.precipitation.$;
-            sum += parseFloat(value);
+            sum += Math.round(parseFloat(value) * 10) / 10;
         }
     }
     return sum;

@@ -4,6 +4,9 @@ Kan kjøres for å spare X kroner pr millimeter nedbør som er meldt på ditt va
 
 Programmet kan enten kjøres enkeltvis (`dist/app.js`) eller som en kontinuerlig kjørende process (`dist/vaersparing.js`).
 
+<img src="resources/log.png" alt="Bilde av PM2 logg etter noen dagers kjøring" width="640"/><br />
+<img src="resources/sbanken.png" alt="Bilde av Sbanken transaksjoner etter noen dagers kjøring" width="640"/>
+
 ## Oppsett
 
 Det kreves Node, og nødvendige pakker kan installeres slik:
